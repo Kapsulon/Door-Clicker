@@ -5,14 +5,34 @@ const ORDERS: Array[String] = ["u", "M", "B", "T", "Qua", "Qui", "Se", "Oc", "No
 var points: Dictionary = {}
 
 func _ready() -> void:
-    for ord in ORDERS:
-        points[ord] = 0
-    print(points)
+	for ord in ORDERS:
+		points[ord] = 0
+	print(points)
 
 func _on_click_gui_input(event: InputEvent) -> void:
-    if event is InputEventMouseButton and event.is_pressed():
-        pass
+	if event is InputEventMouseButton and event.is_pressed():
+		pass
 
 func _process(delta: float) -> void:
-    # $UI/clicks.text = str(clicks)
-    pass
+	# $UI/clicks.text = str(clicks)
+	pass
+
+func display_num() -> String:
+	var to_display: Array
+	var index: int = 0
+	var score: String
+
+	to_display = points.keys()
+	to_display.reverse()
+	while (index < ORDERS.size() and points[to_display[index]] == 0):
+		index += 1
+	if (index >= ORDERS.size()):
+		index = ORDERS.size() - 1
+	score = str(points[to_display[index]])
+	if (index + 1 < ORDERS.size()):
+		if (index + 1 == ORDERS.size() - 1):
+			score = score + "," + str(points[to_display[index + 1]] / 10000) + " "
+		else:
+			score = score + "," + str(points[to_display[index + 1]] / 10) + " "
+		score = score + to_display[index]
+	return score
