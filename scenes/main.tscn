@@ -1,3 +1,39 @@
-[gd_scene format=3 uid="uid://bmuohnt75jg7y"]
+[gd_scene load_steps=2 format=3 uid="uid://bmuohnt75jg7y"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_eklex"]
 
 [node name="world" type="Node"]
+script = ExtResource("1_eklex")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="clicks" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.352604
+anchor_top = 0.0814815
+anchor_right = 0.647396
+anchor_bottom = 0.171296
+offset_bottom = -74.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 71
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="click" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="gui_input" from="click" to="." method="_on_click_gui_input"]
