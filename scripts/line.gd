@@ -8,7 +8,6 @@ var guy_in_line = preload("res://scenes/guy_in_line.tscn")
             var tmp = guy_in_line.instantiate()
             add_child(tmp)
             tmp.progress_ratio = i / 50.0
-            print(tmp.progress_ratio)
 
 @export var clear_line: bool = false:
     set(n_clear_line):

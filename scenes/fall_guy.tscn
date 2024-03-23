@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddh8ctwyfukvy"]
+
+[ext_resource type="Texture2D" uid="uid://b63caaaeqmvub" path="res://assets/guy.png" id="1_yseq7"]
+[ext_resource type="Script" path="res://scripts/fall_guy.gd" id="2_on66k"]
+
+[sub_resource type="Curve" id="Curve_hyyoh"]
+max_value = 1.5
+_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0, Vector2(0.887641, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2036x"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D"]
+emitting = false
+amount = 1
+one_shot = true
+draw_order = 1
+texture = ExtResource("1_yseq7")
+emission_shape = 1
+emission_sphere_radius = 16.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = 720.0
+angular_velocity_max = 720.0
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_hyyoh")
+color_ramp = SubResource("Gradient_2036x")
+script = ExtResource("2_on66k")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
