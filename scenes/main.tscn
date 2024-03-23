@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmuohnt75jg7y"]
+[gd_scene load_steps=8 format=3 uid="uid://bmuohnt75jg7y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_eklex"]
 [ext_resource type="Texture2D" uid="uid://0dq2lwp1hffn" path="res://assets/tileset.png" id="2_xup43"]
+[ext_resource type="Script" path="res://scripts/line.gd" id="3_3i8gt"]
+[ext_resource type="Texture2D" uid="uid://b4f1k2gc8fg7l" path="res://assets/door.png" id="4_jba30"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylbwt"]
 texture = ExtResource("2_xup43")
@@ -17,6 +19,12 @@ texture_region_size = Vector2i(256, 256)
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_ylbwt")
 
+[sub_resource type="Curve2D" id="Curve2D_gdais"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 45, -13, 0, 0, 0, 0, 956.538, 794.706)
+}
+point_count = 2
+
 [node name="world" type="Node"]
 script = ExtResource("1_eklex")
 
@@ -27,6 +35,14 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 1, 0, 0, 65537, 0, 0,
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="click" type="Control" parent="UI"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,12 +63,112 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="click" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
+[node name="ScrollContainer" type="ScrollContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.796354
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
+grow_horizontal = 0
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[connection signal="gui_input" from="click" to="." method="_on_click_gui_input"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button2" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button3" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button4" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button5" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button6" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button7" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button8" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button9" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button10" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button11" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button12" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button13" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button14" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button15" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Button16" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 81
+text = "TEST"
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(-85.972, -75.7881)
+scale = Vector2(1.08827, 1.09322)
+curve = SubResource("Curve2D_gdais")
+script = ExtResource("3_3i8gt")
+
+[node name="Door" type="Sprite2D" parent="."]
+z_index = 4096
+position = Vector2(989, 805)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_jba30")
+hframes = 2
+
+[connection signal="gui_input" from="UI/click" to="." method="_on_click_gui_input"]

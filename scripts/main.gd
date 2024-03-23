@@ -4,35 +4,65 @@ const ORDERS: Array[String] = ["u", "M", "B", "T", "Qua", "Qui", "Se", "Oc", "No
 
 var dabloons: Dictionary = {}
 
-func _ready() -> void:
+
+func generate_dabloons_store() -> Dictionary:
+    var tmp: Dictionary = {}
     for ord in ORDERS:
-        dabloons[ord] = 0
-    print(dabloons)
+        tmp[ord] = 0
+    return tmp
+
+
+func _ready() -> void:
+    dabloons = generate_dabloons_store()
+    $Path2D.generate_line = true
+
 
 func _on_click_gui_input(event: InputEvent) -> void:
-    if event is InputEventMouseButton and event.is_pressed():
-        pass
+    if ((event is InputEventMouseButton and event.button_index == 1) or event is InputEventScreenTouch) and event.is_pressed():
+        $Path2D.advance = !$Path2D.advance
+        var tmp = generate_dabloons_store()
+        tmp["u"] = 1
+        add_dabloons(tmp, dabloons)
+
 
 func _process(delta: float) -> void:
-    # $UI/clicks.text = str(clicks)
-    pass
+    $UI/clicks.text = display_num(dabloons) + " Dabloons"
 
-func display_num() -> String:
+
+func display_num(store: Dictionary) -> String:
     var to_display: Array
     var index: int = 0
     var score: String
 
-    to_display = dabloons.keys()
+    to_display = store.keys()
     to_display.reverse()
-    while (index < ORDERS.size() and dabloons[to_display[index]] == 0):
+    while (index < ORDERS.size() and store[to_display[index]] == 0):
         index += 1
     if (index >= ORDERS.size()):
         index = ORDERS.size() - 1
-    score = str(dabloons[to_display[index]])
+    score = str(store[to_display[index]])
     if (index + 1 < ORDERS.size()):
         if (index + 1 == ORDERS.size() - 1):
-            score = score + "," + str(dabloons[to_display[index + 1]] / 10000) + " "
+            score = score + "." + str(store[to_display[index + 1]] / 10000)
         else:
-            score = score + "," + str(dabloons[to_display[index + 1]] / 10) + " "
+            score = score + "." + str(store[to_display[index + 1]] / 10)
         score = score + to_display[index]
     return score
+
+
+func add_dabloons(from: Dictionary, to: Dictionary) -> void:
+    var index: int = 0
+    var carry: int = 0
+    var tmp: int = 0
+    var from_keys: Array = from.keys()
+    var to_keys: Array = to.keys()
+
+    while (index < ORDERS.size()):
+        tmp = from[from_keys[index]] + to[to_keys[index]] + carry
+        if (index == 0):
+            carry = tmp / 1000000
+            to[to_keys[index]] = tmp % 1000000
+        else:
+            carry = tmp / 1000
+            to[to_keys[index]] = tmp % 1000
+        index += 1
