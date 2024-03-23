@@ -1,9 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmuohnt75jg7y"]
+[gd_scene load_steps=5 format=3 uid="uid://bmuohnt75jg7y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_eklex"]
+[ext_resource type="Texture2D" uid="uid://0dq2lwp1hffn" path="res://assets/tileset.png" id="2_xup43"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylbwt"]
+texture = ExtResource("2_xup43")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+1:1/0 = 0
+0:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_yy2yi"]
+tile_size = Vector2i(256, 256)
+sources/0 = SubResource("TileSetAtlasSource_ylbwt")
 
 [node name="world" type="Node"]
 script = ExtResource("1_eklex")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_yy2yi")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 1, 0, 0, 65537, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 65538, 0, 0, 2, 0, 0, 3, 0, 0, 65539, 0, 0, 196611, 0, 1, 131076, 0, 1, 65541, 0, 1, 6, 0, 1, 262146, 0, 1, 262147, 65536, 1, 196612, 65536, 1, 131077, 65536, 1, 65542, 65536, 1, 7, 65536, 1, 196613, 131072, 1, 196614, 131072, 1, 196615, 131072, 1, 131079, 131072, 1, 131078, 131072, 1, 262151, 131072, 1, 262150, 131072, 1, 262149, 131072, 1, 262148, 131072, 1, 65543, 131072, 1, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 262145, 0, 0, 262144, 0, 0, 131075, 0, 0, 65540, 0, 0, 4, 0, 0, 5, 0, 0)
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -16,12 +36,11 @@ grow_vertical = 2
 [node name="clicks" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.352604
-anchor_top = 0.0814815
-anchor_right = 0.647396
-anchor_bottom = 0.171296
-offset_bottom = -74.0
+anchor_top = 0.099537
+anchor_right = 1.0
+anchor_bottom = 0.189352
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 71
 text = "0"
 horizontal_alignment = 1
