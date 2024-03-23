@@ -7,72 +7,72 @@ var dabloons: Dictionary = {}
 
 
 func generate_dabloons_store() -> Dictionary:
-    var tmp: Dictionary = {}
-    for ord in ORDERS:
-        tmp[ord] = 0
-    return tmp
+	var tmp: Dictionary = {}
+	for ord in ORDERS:
+		tmp[ord] = 0
+	return tmp
 
 
 func _ready() -> void:
-    dabloons = generate_dabloons_store()
-    $Path2D.generate_line = true
+	dabloons = generate_dabloons_store()
+	$Path2D.generate_line = true
 
 
 func _on_click_gui_input(event: InputEvent) -> void:
-    if ((event is InputEventMouseButton and event.button_index == 1) or event is InputEventScreenTouch) and event.is_pressed():
-        var fall = FALL_GUY.instantiate()
-        fall.position = $fall_guys_pos.position
-        add_child(fall)
-        fall.emitting = true
-        $Path2D.advance = !$Path2D.advance
-        var tmp = generate_dabloons_store()
-        tmp["u"] = 1
-        add_dabloons(tmp, dabloons)
+	if ((event is InputEventMouseButton and event.button_index == 1) or event is InputEventScreenTouch) and event.is_pressed():
+		var fall = FALL_GUY.instantiate()
+		fall.position = $fall_guys_pos.position
+		add_child(fall)
+		fall.emitting = true
+		$Path2D.advance = !$Path2D.advance
+		var tmp = generate_dabloons_store()
+		tmp["u"] = 1
+		add_dabloons(tmp, dabloons)
 
 
 func _process(delta: float) -> void:
-    var tmp: String = display_num(dabloons)
-    $UI/clicks.text = tmp + " Dabloons"
+	var tmp: String = display_num(dabloons)
+	$UI/clicks.text = tmp + " Dabloons"
 
 
 func display_num(store: Dictionary) -> String:
-    var to_display: Array
-    var index: int = 0
-    var score: String
+	var to_display: Array
+	var index: int = 0
+	var score: String
 
-    to_display = store.keys()
-    to_display.reverse()
-    while (index < ORDERS.size() and store[to_display[index]] == 0):
-        index += 1
-    if (index >= ORDERS.size()):
-        index = ORDERS.size() - 1
-    score = str(store[to_display[index]])
-    if (index + 1 < ORDERS.size()):
-        if (index + 1 == ORDERS.size() - 1):
-            score = score + "." + str(store[to_display[index + 1]] / 10000)
-        else:
-            score = score + "." + str(store[to_display[index + 1]] / 10)
-        score = score + to_display[index]
-    return score
+	to_display = store.keys()
+	to_display.reverse()
+	while (index < ORDERS.size() and store[to_display[index]] == 0):
+		index += 1
+	if (index >= ORDERS.size()):
+		index = ORDERS.size() - 1
+	score = str(store[to_display[index]])
+	if (index + 1 < ORDERS.size()):
+		if (index + 1 == ORDERS.size() - 1):
+			score = score + "." + str(store[to_display[index + 1]] / 10000)
+		else:
+			score = score + "." + str(store[to_display[index + 1]] / 10)
+		score = score + to_display[index]
+	return score
 
 
 func add_dabloons(from: Dictionary, to: Dictionary) -> void:
-    var index: int = 0
-    var carry: int = 0
-    var tmp: int = 0
-    var from_keys: Array = from.keys()
-    var to_keys: Array = to.keys()
+	var index: int = 0
+	var carry: int = 0
+	var tmp: int = 0
+	var from_keys: Array = from.keys()
+	var to_keys: Array = to.keys()
 
-    while (index < ORDERS.size()):
-        tmp = from[from_keys[index]] + to[to_keys[index]] + carry
-        if (index == 0):
-            carry = tmp / 1000000
-            to[to_keys[index]] = tmp % 1000000
-        else:
-            carry = tmp / 1000
-            to[to_keys[index]] = tmp % 1000
-        index += 1
+	while (index < ORDERS.size()):
+		tmp = from[from_keys[index]] + to[to_keys[index]] + carry
+		if (index == 0):
+			carry = tmp / 1000000
+			to[to_keys[index]] = tmp % 1000000
+		else:
+			carry = tmp / 1000
+			to[to_keys[index]] = tmp % 1000
+		index += 1
 
 
 func _on_check_button_pressed() -> void:
-    $AudioStreamPlayer.playing = $UI/CheckButton.is_pressed()
+	$AudioStreamPlayer.playing = $UI/CheckButton.is_pressed()

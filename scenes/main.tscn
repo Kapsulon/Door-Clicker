@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmuohnt75jg7y"]
+[gd_scene load_steps=10 format=3 uid="uid://bmuohnt75jg7y"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_eklex"]
 [ext_resource type="Texture2D" uid="uid://0dq2lwp1hffn" path="res://assets/tileset.png" id="2_xup43"]
 [ext_resource type="Script" path="res://scripts/line.gd" id="3_3i8gt"]
+[ext_resource type="PackedScene" uid="uid://bjvh2607hw50r" path="res://scenes/upgrade_button.tscn" id="3_ajvys"]
 [ext_resource type="Texture2D" uid="uid://b4f1k2gc8fg7l" path="res://assets/door.png" id="4_jba30"]
 [ext_resource type="AudioStream" uid="uid://dybw3u48fp7eb" path="res://assets/bg_music.mp3" id="5_cu3bx"]
 
@@ -79,85 +80,15 @@ layout_mode = 2
 size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+[node name="UpgradeButton" parent="UI/ScrollContainer/VBoxContainer" instance=ExtResource("3_ajvys")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
+title = "Test1"
+price = 155
 
-[node name="Button2" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
+[node name="UpgradeButton2" parent="UI/ScrollContainer/VBoxContainer" instance=ExtResource("3_ajvys")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button3" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button4" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button5" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button6" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button7" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button8" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button9" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button10" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button11" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button12" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button13" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button14" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button15" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
-
-[node name="Button16" type="Button" parent="UI/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 81
-text = "TEST"
+title = "Test2"
+price = 245
 
 [node name="CheckButton" type="CheckButton" parent="UI"]
 layout_mode = 1
