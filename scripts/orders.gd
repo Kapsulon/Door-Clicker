@@ -4,80 +4,95 @@ const ORDERS: Array[String] = ["u", "M", "B", "T", "Qua", "Qui", "Se", "Oc", "No
 
 
 func generate_dabloons_store() -> Dictionary:
-    var tmp: Dictionary = {}
-    for ord in ORDERS:
-        tmp[ord] = 0
-    return tmp
+	var tmp: Dictionary = {}
+	for ord in ORDERS:
+		tmp[ord] = 0
+	return tmp
 
 
 func display_num(store: Dictionary) -> String:
-    var to_display: Array
-    var index: int = 0
-    var score: String
+	var to_display: Array
+	var index: int = 0
+	var score: String
 
-    to_display = store.keys()
-    to_display.reverse()
-    while (index < ORDERS.size() and store[to_display[index]] == 0):
-        index += 1
-    if (index >= ORDERS.size()):
-        index = ORDERS.size() - 1
-    score = str(store[to_display[index]])
-    if (index + 1 < ORDERS.size()):
-        if (index + 1 == ORDERS.size() - 1):
-            score = score + "." + str(store[to_display[index + 1]] / 10000)
-        else:
-            score = score + "." + str(store[to_display[index + 1]] / 10)
-        score = score + to_display[index]
-    return score
+	to_display = store.keys()
+	to_display.reverse()
+	while (index < ORDERS.size() and store[to_display[index]] == 0):
+		index += 1
+	if (index >= ORDERS.size()):
+		index = ORDERS.size() - 1
+	score = str(store[to_display[index]])
+	if (index + 1 < ORDERS.size()):
+		if (index + 1 == ORDERS.size() - 1):
+			score = score + "." + str(store[to_display[index + 1]] / 10000)
+		else:
+			score = score + "." + str(store[to_display[index + 1]] / 10)
+		score = score + to_display[index]
+	return score
 
 
 func add_dabloons(from: Dictionary, to: Dictionary) -> void:
-    var index: int = 0
-    var carry: int = 0
-    var tmp: int = 0
-    var from_keys: Array = from.keys()
-    var to_keys: Array = to.keys()
+	var index: int = 0
+	var carry: int = 0
+	var tmp: int = 0
+	var from_keys: Array = from.keys()
+	var to_keys: Array = to.keys()
 
-    while (index < ORDERS.size()):
-        tmp = from[from_keys[index]] + to[to_keys[index]] + carry
-        if (index == 0):
-            carry = tmp / 1000000
-            to[to_keys[index]] = tmp % 1000000
-        else:
-            carry = tmp / 1000
-            to[to_keys[index]] = tmp % 1000
-        index += 1
+	while (index < ORDERS.size()):
+		tmp = from[from_keys[index]] + to[to_keys[index]] + carry
+		if (index == 0):
+			carry = tmp / 1000000
+			to[to_keys[index]] = tmp % 1000000
+		else:
+			carry = tmp / 1000
+			to[to_keys[index]] = tmp % 1000
+		index += 1
 
+func multiply_dabloons(to: Dictionary, mul: int) -> void:
+	var index: int = 0
+	var carry: int = 0
+	var tmp: int = 0
+	var to_keys: Array = to.keys()
+
+	while (index < ORDERS.size()):
+		tmp = (to[to_keys[index]] * mul) + carry
+		if (index == 0):
+			carry = tmp / 1000000
+			to[to_keys[index]] = tmp % 1000000
+		else:
+			carry = tmp / 1000
+			to[to_keys[index]] = tmp % 1000
+		index += 1
 
 func remove_dabloons(from: Dictionary, to: Dictionary) -> void:
-    var index: int = 0
-    var carry: int = 0
-    var tmp: int = 0
-    var from_keys: Array = from.keys()
-    var to_keys: Array = to.keys()
+	var index: int = 0
+	var carry: int = 0
+	var tmp: int = 0
+	var from_keys: Array = from.keys()
+	var to_keys: Array = to.keys()
 
-    while (index < ORDERS.size()):
-        tmp = to[from_keys[index]] - (from[to_keys[index]] + carry)
-        if (tmp < 0):
-            carry = 1
-            if (index == 0):
-                to[to_keys[index]] = 1000000 + tmp
-            else:
-                to[to_keys[index]] = 1000 + tmp
-        else:
-            carry = 0
-            to[to_keys[index]] = tmp
-        index += 1
+	while (index < ORDERS.size()):
+		tmp = to[from_keys[index]] - (from[to_keys[index]] + carry)
+		if (tmp < 0):
+			carry = 1
+			if (index == 0):
+				to[to_keys[index]] = 1000000 + tmp
+			else:
+				to[to_keys[index]] = 1000 + tmp
+		else:
+			carry = 0
+			to[to_keys[index]] = tmp
+		index += 1
 
 
 func compare_dabloons_greater_or_equal(fstval: Dictionary, sndval: Dictionary):
-    var keys: Array
-    var index: int = 0
+	var keys: Array
+	var index: int = 0
 
-    while (index < ORDERS.size()):
-        if (fstval[keys[index]] > sndval[keys[index]]):
-            return true
-        if (fstval[keys[index]] < sndval[keys[index]]):
-            return false
-        index += 1
-    return true
+	while (index < ORDERS.size()):
+		if (fstval[keys[index]] > sndval[keys[index]]):
+			return true
+		if (fstval[keys[index]] < sndval[keys[index]]):
+			return false
+		index += 1
+	return true
