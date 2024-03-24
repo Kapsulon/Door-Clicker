@@ -74,5 +74,38 @@ func add_dabloons(from: Dictionary, to: Dictionary) -> void:
 		index += 1
 
 
+func remove_dabloons(from: Dictionary, to: Dictionary) -> void:
+	var index: int = 0
+	var carry: int = 0
+	var tmp: int = 0
+	var from_keys: Array = from.keys()
+	var to_keys: Array = to.keys()
+
+	while (index < ORDERS.size()):
+		tmp = to[from_keys[index]] - (from[to_keys[index]] + carry)
+		if (tmp < 0):
+			carry = 1
+			if (index == 0):
+				to[to_keys[index]] = 1000000 + tmp
+			else:
+				to[to_keys[index]] = 1000 + tmp
+		else:
+			carry = 0
+			to[to_keys[index]] = tmp
+		index += 1
+
+
+func compare_dabloons_greater_or_equal(fstval: Dictionary, sndval: Dictionary):
+	var keys: Array
+	var index: int = 0
+
+	while (index < ORDERS.size()):
+		if (fstval[keys[index]] > sndval[keys[index]]):
+			return true
+		if (fstval[keys[index]] < sndval[keys[index]]):
+			return false
+		index += 1
+	return true
+
 func _on_check_button_pressed() -> void:
 	$AudioStreamPlayer.playing = $UI/CheckButton.is_pressed()
