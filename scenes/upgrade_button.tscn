@@ -19,6 +19,7 @@ texture_normal = ExtResource("1_p4551")
 texture_pressed = ExtResource("2_pcbuf")
 stretch_mode = 4
 script = ExtResource("3_7r4c6")
+start_price = 50
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
@@ -41,11 +42,28 @@ texture = ExtResource("4_ckbul")
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.251282
 anchor_top = 0.607843
-anchor_right = 0.915385
+anchor_right = 0.766667
 anchor_bottom = 0.833333
-text = "0 Dabloons"
+text = "50 Dabloons"
 label_settings = SubResource("LabelSettings_m3tn4")
 metadata/_edit_use_anchors_ = true
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.79
+anchor_top = 0.608
+anchor_right = 0.915
+anchor_bottom = 0.804
+offset_left = -0.100006
+offset_top = -0.0160027
+offset_right = 0.149994
+offset_bottom = 2.992
+text = "0"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
