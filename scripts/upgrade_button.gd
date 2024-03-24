@@ -25,11 +25,16 @@ var price: String = "0 Dabloons":
         if (price_label != null):
             price_label.set("text", price)
 
-var dabloons_price: Dictionary = Orders.generate_dabloons_store()
+var dabloons_price: Dictionary = {}
 
 func _ready():
     if len(start_price.keys()) == 0:
         start_price = Orders.generate_dabloons_store()
+    if start_price.keys()[0] != "u":
+        var tmp = Orders.generate_dabloons_store()
+        for k in start_price.keys():
+            tmp[k] = start_price[k]
+        start_price = tmp.duplicate()
     dabloons_price = start_price.duplicate()
     set_price(dabloons_price)
 
