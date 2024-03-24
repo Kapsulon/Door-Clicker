@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjvh2607hw50r"]
+[gd_scene load_steps=7 format=3 uid="uid://cg0kgqd7nxpnt"]
 
 [ext_resource type="Texture2D" uid="uid://dy477lfp555ur" path="res://assets/upgrade_button1.png" id="1_p4551"]
 [ext_resource type="Texture2D" uid="uid://djms7cxrreidi" path="res://assets/upgrade_button2.png" id="2_pcbuf"]
@@ -19,7 +19,6 @@ texture_normal = ExtResource("1_p4551")
 texture_pressed = ExtResource("2_pcbuf")
 stretch_mode = 4
 script = ExtResource("3_7r4c6")
-start_price = 50
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]

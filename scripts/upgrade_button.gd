@@ -11,14 +11,7 @@ extends TextureButton
         title = new_title
         $Label.set("text", title)
 
-@export var start_price: int = 0:
-    set(new_start_price):
-        start_price = new_start_price
-        var add_price = Orders.generate_dabloons_store()
-        add_price["u"] = start_price
-        var this_price = Orders.generate_dabloons_store()
-        Orders.add_dabloons(add_price, this_price)
-        set_price(this_price)
+@export var start_price: Dictionary = {}
 
 @export var level: int = 0:
     set(new_level):
@@ -35,7 +28,10 @@ var price: String = "0 Dabloons":
 var dabloons_price: Dictionary = Orders.generate_dabloons_store()
 
 func _ready():
-    pass
+    if len(start_price.keys()) == 0:
+        start_price = Orders.generate_dabloons_store()
+    dabloons_price = start_price.duplicate()
+    set_price(dabloons_price)
 
 func _process(delta):
     pass
