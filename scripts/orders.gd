@@ -89,11 +89,13 @@ func remove_dabloons(from: Dictionary, to: Dictionary) -> void:
 
 func compare_dabloons_greater_or_equal(fstval: Dictionary, sndval: Dictionary):
 	var index: int = 0
+	var tmp: Array = ORDERS.duplicate()
 
-	while (index < ORDERS.size()):
-		if (fstval[ORDERS[index]] > sndval[ORDERS[index]]):
+	tmp.reverse()
+	while (index < tmp.size()):
+		if (fstval[tmp[index]] > sndval[tmp[index]]):
 			return true
-		if (fstval[ORDERS[index]] < sndval[ORDERS[index]]):
+		if (fstval[tmp[index]] < sndval[tmp[index]]):
 			return false
 		index += 1
 	return true
