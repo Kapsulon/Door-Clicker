@@ -83,12 +83,14 @@ metadata/_edit_use_anchors_ = true
 [node name="UpgradeButton" parent="UI/ScrollContainer/VBoxContainer" instance=ExtResource("3_ajvys")]
 layout_mode = 2
 title = "Test1"
-price = 155
+start_price = null
+level = null
 
 [node name="UpgradeButton2" parent="UI/ScrollContainer/VBoxContainer" instance=ExtResource("3_ajvys")]
 layout_mode = 2
 title = "Test2"
-price = 245
+start_price = null
+level = null
 
 [node name="CheckButton" type="CheckButton" parent="UI"]
 layout_mode = 1
