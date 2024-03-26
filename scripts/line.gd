@@ -16,9 +16,9 @@ var guy_in_line = preload("res://scenes/guy_in_line.tscn")
 
 @export var advance: bool = false:
     set(n_advance):
-        advance = n_advance
         if n_advance == false:
             return
+        advance = n_advance
         for child in get_children():
             var tw: Tween = create_tween()
             tw.tween_property(child, "progress_ratio", child.progress_ratio + (1.0 / 50.0), 0.1)

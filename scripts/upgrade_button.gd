@@ -1,5 +1,5 @@
 @tool
-extends TextureButton
+class_name UpgradeButton extends TextureButton
 
 @export var icon: Texture2D = null:
     set(new_icon):
@@ -47,10 +47,6 @@ func get_player_dabloons():
 func set_price(new_price: Dictionary):
     dabloons_price = new_price
     price = Orders.display_num(new_price)
-
-func get_multiplier():
-    var money: Dictionary = get_player_dabloons()
-    Orders.multiply_dabloons(money, level)
 
 func _on_pressed():
     var money: Dictionary = get_player_dabloons()

@@ -5,97 +5,97 @@ const ORDERS: Array[String] = ["u", "M", "B", "T", "Qua", "Qui", "Se", "Oc", "No
 
 
 func generate_dabloons_store() -> Dictionary:
-	var tmp: Dictionary = {}
-	for ord in ORDERS:
-		tmp[ord] = 0
-	return tmp
+    var tmp: Dictionary = {}
+    for ord in ORDERS:
+        tmp[ord] = 0
+    return tmp
 
 func display_num(store: Dictionary) -> String:
-	var to_display: Array
-	var index: int = 0
-	var score: String
-	var floating: int = 0
+    var to_display: Array
+    var index: int = 0
+    var score: String
+    var floating: int = 0
 
-	to_display = ORDERS.duplicate()
-	to_display.reverse()
-	while (index < ORDERS.size() and store[to_display[index]] == 0):
-		index += 1
-	if (index >= ORDERS.size()):
-		index = ORDERS.size() - 1
-	score = str(store[to_display[index]])
-	if (index + 1 < ORDERS.size()):
-		if (index + 1 == ORDERS.size() - 1):
-			score = score + "."
-			floating = store[to_display[index + 1]] / 10000
-		else:
-			score = score + "."
-			floating = store[to_display[index + 1]] / 10
-			print(store[to_display[index + 1]] / 10)
-		if (floating < 10):
-			score = score + "0"
-		if floating != 0:
-			score = score + str(floating)
-		score = score + to_display[index]
-	return score
+    to_display = ORDERS.duplicate()
+    to_display.reverse()
+    while (index < ORDERS.size() and store[to_display[index]] == 0):
+        index += 1
+    if (index >= ORDERS.size()):
+        index = ORDERS.size() - 1
+    score = str(store[to_display[index]])
+    if (index + 1 < ORDERS.size()):
+        if (index + 1 == ORDERS.size() - 1):
+            score = score + "."
+            floating = store[to_display[index + 1]] / 10000
+        else:
+            score = score + "."
+            floating = store[to_display[index + 1]] / 10
+            print(store[to_display[index + 1]] / 10)
+        if (floating < 10):
+            score = score + "0"
+        if floating != 0:
+            score = score + str(floating)
+        score = score + to_display[index]
+    return score
 
 func add_dabloons(from: Dictionary, to: Dictionary) -> void:
-	var index: int = 0
-	var carry: int = 0
-	var tmp: int = 0
+    var index: int = 0
+    var carry: int = 0
+    var tmp: int = 0
 
-	while (index < ORDERS.size()):
-		tmp = from[ORDERS[index]] + to[ORDERS[index]] + carry
-		if (index == 0):
-			carry = tmp / 1000000
-			to[ORDERS[index]] = tmp % 1000000
-		else:
-			carry = tmp / 1000
-			to[ORDERS[index]] = tmp % 1000
-		index += 1
+    while (index < ORDERS.size()):
+        tmp = from[ORDERS[index]] + to[ORDERS[index]] + carry
+        if (index == 0):
+            carry = tmp / 1000000
+            to[ORDERS[index]] = tmp % 1000000
+        else:
+            carry = tmp / 1000
+            to[ORDERS[index]] = tmp % 1000
+        index += 1
 
 func multiply_dabloons(to: Dictionary, mul: float) -> void:
-	var index: int = 0
-	var carry: int = 0
-	var tmp: int = 0
+    var index: int = 0
+    var carry: int = 0
+    var tmp: int = 0
 
-	while (index < ORDERS.size()):
-		tmp = (to[ORDERS[index]] * mul) + carry
-		if (index == 0):
-			carry = tmp / 1000000
-			to[ORDERS[index]] = tmp % 1000000
-		else:
-			carry = tmp / 1000
-			to[ORDERS[index]] = tmp % 1000
-		index += 1
+    while (index < ORDERS.size()):
+        tmp = (to[ORDERS[index]] * mul) + carry
+        if (index == 0):
+            carry = tmp / 1000000
+            to[ORDERS[index]] = tmp % 1000000
+        else:
+            carry = tmp / 1000
+            to[ORDERS[index]] = tmp % 1000
+        index += 1
 
 func remove_dabloons(from: Dictionary, to: Dictionary) -> void:
-	var index: int = 0
-	var carry: int = 0
-	var tmp: int = 0
+    var index: int = 0
+    var carry: int = 0
+    var tmp: int = 0
 
-	while (index < ORDERS.size()):
-		tmp = to[ORDERS[index]] - (from[ORDERS[index]] + carry)
-		if (tmp < 0):
-			carry = 1
-			if (index == 0):
-				to[ORDERS[index]] = 1000000 + tmp
-			else:
-				to[ORDERS[index]] = 1000 + tmp
-		else:
-			carry = 0
-			to[ORDERS[index]] = tmp
-		index += 1
+    while (index < ORDERS.size()):
+        tmp = to[ORDERS[index]] - (from[ORDERS[index]] + carry)
+        if (tmp < 0):
+            carry = 1
+            if (index == 0):
+                to[ORDERS[index]] = 1000000 + tmp
+            else:
+                to[ORDERS[index]] = 1000 + tmp
+        else:
+            carry = 0
+            to[ORDERS[index]] = tmp
+        index += 1
 
 
 func compare_dabloons_greater_or_equal(fstval: Dictionary, sndval: Dictionary):
-	var index: int = 0
-	var tmp: Array = ORDERS.duplicate()
+    var index: int = 0
+    var tmp: Array = ORDERS.duplicate()
 
-	tmp.reverse()
-	while (index < tmp.size()):
-		if (fstval[tmp[index]] > sndval[tmp[index]]):
-			return true
-		if (fstval[tmp[index]] < sndval[tmp[index]]):
-			return false
-		index += 1
-	return true
+    tmp.reverse()
+    while (index < tmp.size()):
+        if (fstval[tmp[index]] > sndval[tmp[index]]):
+            return true
+        if (fstval[tmp[index]] < sndval[tmp[index]]):
+            return false
+        index += 1
+    return true
