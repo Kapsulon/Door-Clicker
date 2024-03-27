@@ -11,7 +11,11 @@ class_name UpgradeButton extends TextureButton
         title = new_title
         $Label.set("text", title)
 
-@export var start_price: Dictionary = {}
+@export var start_price: Vector2i = Vector2i.ZERO:
+    set(new_start_price):
+        start_price = new_start_price
+        dabloons_price = Big.new(new_start_price.x, new_start_price.y)
+        set_price(dabloons_price)
 
 @export var level: int = 0:
     set(new_level):
@@ -25,33 +29,26 @@ var price: String = "0 Dabloons":
         if (price_label != null):
             price_label.set("text", price)
 
-var dabloons_price: Dictionary = {}
+var dabloons_price: Big = Big.new(0)
 
 func _ready():
-    if len(start_price.keys()) == 0:
-        start_price = Orders.generate_dabloons_store()
-    if start_price.keys()[0] != "u":
-        var tmp = Orders.generate_dabloons_store()
-        for k in start_price.keys():
-            tmp[k] = start_price[k]
-        start_price = tmp.duplicate()
-    dabloons_price = start_price.duplicate()
     set_price(dabloons_price)
 
 func _process(delta):
     pass
 
-func get_player_dabloons():
+func get_player_dabloons() -> Big:
     return get_node("/root/world").dabloons
 
-func set_price(new_price: Dictionary):
+func set_price(new_price: Big):
     dabloons_price = new_price
-    price = Orders.display_num(new_price)
+    price = new_price.toAA()
 
 func _on_pressed():
-    var money: Dictionary = get_player_dabloons()
-    if (Orders.compare_dabloons_greater_or_equal(money, dabloons_price)):
-        Orders.remove_dabloons(dabloons_price, money)
-        Orders.multiply_dabloons(dabloons_price, 1.5)
+    var money: Big = get_player_dabloons()
+    if (money.isGreaterThanOrEqualTo(dabloons_price)):
+        get_node("/root/world").dabloons = money.minus(dabloons_price)
+        dabloons_price = dabloons_price.times(1.5)
+        dabloons_price = Big.roundDown(dabloons_price)
         set_price(dabloons_price)
         level += 1

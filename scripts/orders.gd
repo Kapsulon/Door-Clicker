@@ -30,7 +30,6 @@ func display_num(store: Dictionary) -> String:
         else:
             score = score + "."
             floating = store[to_display[index + 1]] / 10
-            print(store[to_display[index + 1]] / 10)
         if (floating < 10):
             score = score + "0"
         if floating != 0:

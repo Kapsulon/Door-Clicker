@@ -3,7 +3,7 @@ extends Node
 const FALL_GUY: PackedScene = preload("res://scenes/fall_guy.tscn")
 var UPGRADES: Array[Node]
 
-var dabloons: Dictionary = {}
+var dabloons: Big
 
 
 func click() -> void:
@@ -14,15 +14,17 @@ func click() -> void:
             add_child(fall)
             fall.emitting = true
         $Path2D.advance = !$Path2D.advance
-    var tmp = Orders.generate_dabloons_store()
-    tmp["u"] = pow((UPGRADES[0].level + 1) * (UPGRADES[1].level + 1), ((UPGRADES[2].level / 10) + 1))
-    Orders.add_dabloons(tmp, dabloons)
+    var tmp: Big = Big.new(0)
+    tmp = tmp.plus(UPGRADES[0].level + 1)
+    tmp = tmp.times(UPGRADES[1].level + 1)
+    tmp = tmp.toThePowerOf((UPGRADES[2].level / 10) + 1)
+    dabloons = dabloons.plus(tmp)
 
 
 func _ready() -> void:
     UPGRADES = $UI/ScrollContainer/VBoxContainer.get_children()
-    dabloons = Orders.generate_dabloons_store()
-    dabloons["M"] = 5
+    dabloons = Big.new(0)
+    dabloons.setSmallDecimals(1)
     $Path2D.generate_line = true
 
 
@@ -32,10 +34,10 @@ func _on_click_gui_input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
-    if Input.is_action_pressed("ui_accept"):
+    if Input.is_action_pressed("debug"):
         click()
-    var tmp: String = Orders.display_num(dabloons)
-    $UI/clicks.text = tmp + " Dabloons"
+    print(dabloons.toString())
+    $UI/clicks.text = dabloons.toAA() + " Dabloons"
 
 
 func _on_check_button_pressed() -> void:
