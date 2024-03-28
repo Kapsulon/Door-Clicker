@@ -54,6 +54,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="save" type="Button" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -91.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Save game"
+
 [node name="clicks" type="Label" parent="UI"]
 layout_mode = 1
 anchors_preset = -1
@@ -73,7 +87,7 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.796354
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.912037
 grow_horizontal = 0
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -134,4 +148,5 @@ volume_db = -10.0
 position = Vector2(992, 869)
 
 [connection signal="gui_input" from="UI/click" to="." method="_on_click_gui_input"]
+[connection signal="pressed" from="UI/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="UI/CheckButton" to="." method="_on_check_button_pressed"]

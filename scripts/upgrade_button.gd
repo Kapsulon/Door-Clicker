@@ -21,6 +21,10 @@ class_name UpgradeButton extends TextureButton
     set(new_level):
         level = new_level
         $Label3.set("text", new_level)
+        for i in level:
+            dabloons_price = dabloons_price.times(1.5)
+        dabloons_price = Big.roundDown(dabloons_price)
+        set_price(dabloons_price)
 
 var price: String = "0 Dabloons":
     set(new_price):
