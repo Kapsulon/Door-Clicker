@@ -21,6 +21,7 @@ class_name UpgradeButton extends TextureButton
     set(new_level):
         level = new_level
         $Label3.set("text", new_level)
+        dabloons_price = Big.new(start_price.x, start_price.y)
         for i in level:
             dabloons_price = dabloons_price.times(1.5)
         dabloons_price = Big.roundDown(dabloons_price)
@@ -52,7 +53,4 @@ func _on_pressed():
     var money: Big = get_player_dabloons()
     if (money.isGreaterThanOrEqualTo(dabloons_price)):
         get_node("/root/world").dabloons = money.minus(dabloons_price)
-        dabloons_price = dabloons_price.times(1.5)
-        dabloons_price = Big.roundDown(dabloons_price)
-        set_price(dabloons_price)
         level += 1
