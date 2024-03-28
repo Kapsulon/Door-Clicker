@@ -47,7 +47,7 @@ anchor_left = 0.251282
 anchor_top = 0.607843
 anchor_right = 0.766667
 anchor_bottom = 0.833333
-text = "50 Dabloons"
+text = " Dabloons"
 label_settings = SubResource("LabelSettings_m3tn4")
 metadata/_edit_use_anchors_ = true
 
